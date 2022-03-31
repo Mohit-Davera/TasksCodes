@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::div})">
+<head>
+</head>
+<body>
+	<div class="container my-2">
+		<h3 class="d-inline">Employees List</h3>
+
+		<a href="showNewEmployeeForm" class=" btn btn-primary btn-sm mb-3">
+			Add Employee </a>
+		
+		<table border="1"
+			class="table table-sm table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>ID  <a th:class="${sortField == 'id' && sortDir == 'asc'} ? 'btn-sm btn-primary':'btn-sm'" th:href="@{'?pageNo=1&sortField=id'}">&#x2191;</a>
+						<a th:class="${sortField == 'id' && sortDir=='dsc'} ? 'btn-sm btn-primary':'btn-sm'" th:href="@{'?pageNo=1&sortField=id&sortDir=dsc'}">&#x2193;</a>
+					</th>
+					<th>Employee First Name  <a th:class="${sortField == 'firstName' && sortDir == 'asc'} ? 'btn-sm btn-primary':'btn-sm'"
+						th:href="@{'?pageNo='+${currentPage}+'&sortField=firstName'}">&#x2191;</a>
+						<a th:class="${sortField == 'firstName' && sortDir == 'dsc'} ? 'btn-sm btn-primary':'btn-sm'"
+						th:href="@{'?pageNo='+${currentPage}+'&sortField=firstName&sortDir=dsc'}">&#x2193;</a>
+
+					</th>
+					<th>Employee Last Name  <a th:class="${sortField == 'lastName' && sortDir == 'asc'} ? 'btn-sm btn-primary':'btn-sm'"
+						th:href="@{'?pageNo='+${currentPage}+'&sortField=lastName'}">&#x2191;</a>
+						<a th:class="${sortField == 'lastName' && sortDir == 'dsc'} ? 'btn-sm btn-primary':'btn-sm'"
+						th:href="@{'?pageNo='+${currentPage}+'&sortField=lastName&sortDir=dsc'}">&#x2193;</a>
+
+					</th>
+					<th>Employee Email  <a th:class="${sortField == 'email' && sortDir == 'asc'} ? 'btn-sm btn-primary':'btn-sm'"
+						th:href="@{'?pageNo='+${currentPage}+'&sortField=email'}">&#x2191;</a>
+						<a th:class="${sortField == 'email' && sortDir == 'dsc'} ? 'btn-sm btn-primary':'btn-sm'"
+						th:href="@{'?pageNo='+${currentPage}+'&sortField=email&sortDir=dsc'}">&#x2193;</a>
+
+					</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="employee,stat : ${listEmployees}">
+				<td th:text="${employee.id}"></td>
+<!-- 					<td th:text="${(stat.index+1)+((currentPage-1)*10)}"></td> -->
+					<td th:text="${employee.firstName}"></td>
+					<td th:text="${employee.lastName}"></td>
+					<td th:text="${employee.email}"></td>
+					<td><a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}"
+						class="btn btn-primary">Update</a> <a
+						th:href="@{/deleteEmployee/{id}(id=${employee.id})}"
+						class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div th:if="${totalPages > 1}">
+		<div class="row col-sm-10">
+			<div class="col-sm-2">Total Rows: [[${totalItems}]]</div>
+			<div class="col">
+				<nav id="pagination-demo" aria-label="Page navigation example">
+					<ul class="pagination">
+
+						<li class="page-item"><a class="page-link"
+							th:if="${currentPage} == 1 "
+							th:href="@{'?pageNo=' + ${totalPages}+ '&sortField='+ ${sortField}+ '&sortDir='+ ${sortDir}}">&laquo;
+								Last </a> <a class="page-link" th:unless="${currentPage} == 1 "
+							th:href="@{'?pageNo=' + ${currentPage-1}+ '&sortField='+ ${sortField}+ '&sortDir='+ ${sortDir}}">&laquo;
+								Last </a></li>
+
+						<li th:each="i: ${#numbers.sequence(1, totalPages)}"
+							th:class="${currentPage != i} ? 'page-item' : 'page-item active'">
+
+							<a class="page-link"
+							th:href="${currentPage != i} ? '?pageNo=' + ${i} + '&sortField='+ ${sortField} + '&sortDir='+ ${sortDir} : ' ' ">[[${i}]]</a>
+						</li>
+
+						<li class="page-item"><a class="page-link"
+							th:if="${currentPage == totalPages} "
+							th:href="@{'?pageNo=1'+ '&sortField='+ ${sortField}+ '&sortDir='+ ${sortDir}}">Next
+								&raquo;</a> <a class="page-link"
+							th:unless="${currentPage == totalPages }"
+							th:href="@{'?pageNo=' + ${currentPage+1}+ '&sortField='+ ${sortField}+ '&sortDir='+ ${sortDir}}">Next
+								&raquo;</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
+

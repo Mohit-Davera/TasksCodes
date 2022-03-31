@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Iterator</title>
+</head>
+<body>
+<h1>Hello WOrld</h1>
+<ul>
+	<li th:each="n,status:${list}">
+	<span th:style="${status.odd} ? 'color:red' : 'color:blue'" th:text="${status.count }+' '+${n}"></span>
+	</li> 
+</ul>
+</body>
+</html>

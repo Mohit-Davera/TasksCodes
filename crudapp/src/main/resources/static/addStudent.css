@@ -1,0 +1,23 @@
+body {
+	color: white;
+	background-color: #848484;
+
+}
+#functional{
+	margin-top: 18px;
+}
+
+#items{
+	margin-right: 0px;
+	margin-top:0px;
+}
+nav{
+	margin-bottom: 10px;
+}
+.deleteBtn{
+	margin:10px 5px;
+}
+section
+{
+	margin: 10px,0px;
+}

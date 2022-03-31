@@ -1,0 +1,35 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::div})">
+
+<head></head>
+<body>
+	<div class="container">
+		<h1>Employee Management System</h1>
+		<hr>
+		<h2>Save Employee</h2>
+
+		<form action="#" th:action="@{/saveEmployee}" th:object="${employee}"
+			method="POST">
+			<input required type="text" th:field="*{firstName}"
+				placeholder="Employee First Name" class="form-control mb-4 col-4">
+
+			<input required type="text" th:field="*{lastName}"
+				placeholder="Employee Last Name" class="form-control mb-4 col-4">
+
+			<input required type="text" th:field="*{email}" placeholder="Employee Email"
+				class="form-control mb-4 col-4">
+
+			<button type="submit" class="btn btn-info col-2">Save
+				Employee</button>
+		</form>
+
+		<hr>
+
+		<a class="btn btn-info col-2" th:href="@{/}"> Back to Employee List</a>
+	</div> 
+</body>
+
+</html>
+

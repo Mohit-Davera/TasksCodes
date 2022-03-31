@@ -1,0 +1,29 @@
+.index
+{
+	width:10px;
+}
+#showAllRecords{
+	margin-top: 10px;
+}
+body{
+	background-color: #848484;
+	color:white;
+}
+
+table, th, td {
+	text-align:center;
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding:10px;
+}
+form{
+	margin-left: 10px;
+}
+.index{
+	margin:5px;
+}
+.jumpto{
+	display:inline;
+	margin-left:531px;
+	text-align: center;
+}
